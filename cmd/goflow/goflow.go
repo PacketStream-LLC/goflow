@@ -8,8 +8,8 @@ import (
 	"runtime"
 	"sync"
 
-	"github.com/packetstream-llc/goflow/v3/transport"
-	"github.com/packetstream-llc/goflow/v3/utils"
+	"github.com/packetstream-llc/goflow-avro/v3/transport"
+	"github.com/packetstream-llc/goflow-avro/v3/utils"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	log "github.com/sirupsen/logrus"
 )

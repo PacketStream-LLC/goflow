@@ -1,4 +1,4 @@
-module github.com/packetstream-llc/goflow/v3
+module github.com/packetstream-llc/goflow-avro/v3
 
 go 1.18
 

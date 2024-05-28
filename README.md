@@ -1,4 +1,4 @@
-# GoFlow
+# GoFlow-AVRO
 
 This application is a NetFlow/IPFIX/sFlow collector in Go.
 

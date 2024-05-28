@@ -5,7 +5,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/packetstream-llc/goflow/v3/decoders/utils"
+	"github.com/packetstream-llc/goflow-avro/v3/decoders/utils"
 )
 
 const (

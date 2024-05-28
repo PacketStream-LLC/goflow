@@ -10,7 +10,7 @@ GOFLOW_VERSION := $(shell git describe --tags $(git rev-list --tags --max-count=
 VERSION_PKG   := $(shell echo $(GOFLOW_VERSION) | sed 's/^v//g')
 ARCH          := x86_64
 LICENSE       := BSD-3
-URL           := https://github.com/packetstream-llc/goflow
+URL           := https://github.com/packetstream-llc/goflow-avro
 DESCRIPTION   := GoFlow: an sFlow/IPFIX/NetFlow v9/v5 collector to Kafka
 BUILDINFOS    :=  ($(shell date +%FT%T%z)$(BUILDINFOSDET))
 LDFLAGS       := '-X main.version=$(GOFLOW_VERSION) -X main.buildinfos=$(BUILDINFOS)'

@@ -1,4 +1,4 @@
-ARG src_uri=github.com/packetstream-llc/goflow
+ARG src_uri=github.com/packetstream-llc/goflow-avro
 
 FROM golang:alpine as builder
 ARG src_uri

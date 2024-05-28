@@ -5,8 +5,8 @@ import (
 	"errors"
 	"net"
 
-	"github.com/packetstream-llc/goflow/v3/decoders/netflowlegacy"
-	flowmessage "github.com/packetstream-llc/goflow/v3/pb"
+	"github.com/packetstream-llc/goflow-avro/v3/decoders/netflowlegacy"
+	flowmessage "github.com/packetstream-llc/goflow-avro/v3/pb"
 )
 
 func ConvertNetFlowLegacyRecord(baseTime uint32, uptime uint32, record netflowlegacy.RecordsNetFlowV5) *flowmessage.FlowMessage {

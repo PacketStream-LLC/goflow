@@ -5,9 +5,9 @@ import (
 	"net"
 	"time"
 
-	"github.com/packetstream-llc/goflow/v3/decoders/sflow"
-	flowmessage "github.com/packetstream-llc/goflow/v3/pb"
-	"github.com/packetstream-llc/goflow/v3/producer"
+	"github.com/packetstream-llc/goflow-avro/v3/decoders/sflow"
+	flowmessage "github.com/packetstream-llc/goflow-avro/v3/pb"
+	"github.com/packetstream-llc/goflow-avro/v3/producer"
 	"github.com/prometheus/client_golang/prometheus"
 )
 

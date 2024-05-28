@@ -11,8 +11,8 @@ import (
 	"strings"
 
 	sarama "github.com/Shopify/sarama"
-	flowmessage "github.com/packetstream-llc/goflow/v3/pb"
-	"github.com/packetstream-llc/goflow/v3/utils"
+	flowmessage "github.com/packetstream-llc/goflow-avro/v3/pb"
+	"github.com/packetstream-llc/goflow-avro/v3/utils"
 )
 
 var (
