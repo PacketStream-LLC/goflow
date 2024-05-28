@@ -3,7 +3,7 @@
 This application is a NetFlow/IPFIX/sFlow collector in Go.
 
 It gathers network information (IP, interfaces, routers) from different flow protocols,
-serializes it in ~~a protobuf format~~ **AVRO format** and sends the messages to Kafka using ~~Sarama's library~~ **confluent's library**.
+serializes it in ~~a protobuf format~~ **AVRO format** and sends the messages to Kafka using Sarama's library
 
 ## Why
 
