@@ -10,10 +10,10 @@ import (
 	"strings"
 	"time"
 
-	decoder "github.com/cloudflare/goflow/v3/decoders"
-	"github.com/cloudflare/goflow/v3/decoders/netflow"
-	flowmessage "github.com/cloudflare/goflow/v3/pb"
 	reuseport "github.com/libp2p/go-reuseport"
+	decoder "github.com/packetstream-llc/goflow/v3/decoders"
+	"github.com/packetstream-llc/goflow/v3/decoders/netflow"
+	flowmessage "github.com/packetstream-llc/goflow/v3/pb"
 	"github.com/prometheus/client_golang/prometheus"
 )
 

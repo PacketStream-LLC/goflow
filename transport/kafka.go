@@ -11,9 +11,8 @@ import (
 	"strings"
 
 	sarama "github.com/Shopify/sarama"
-	flowmessage "github.com/cloudflare/goflow/v3/pb"
-	"github.com/cloudflare/goflow/v3/utils"
-	proto "github.com/golang/protobuf/proto"
+	flowmessage "github.com/packetstream-llc/goflow/v3/pb"
+	"github.com/packetstream-llc/goflow/v3/utils"
 )
 
 var (
@@ -160,23 +159,32 @@ func HashProto(fields []string, flowMessage *flowmessage.FlowMessage) string {
 }
 
 func (s KafkaState) SendKafkaFlowMessage(flowMessage *flowmessage.FlowMessage) {
-	var key sarama.Encoder
-	if s.hashing {
-		keyStr := HashProto(s.keying, flowMessage)
-		key = sarama.StringEncoder(keyStr)
-	}
-	var b []byte
-	if !s.FixedLengthProto {
-		b, _ = proto.Marshal(flowMessage)
-	} else {
-		buf := proto.NewBuffer([]byte{})
-		buf.EncodeMessage(flowMessage)
-		b = buf.Bytes()
-	}
-	s.producer.Input() <- &sarama.ProducerMessage{
-		Topic: s.topic,
-		Key:   key,
-		Value: sarama.ByteEncoder(b),
+	// var key sarama.Encoder
+	// if s.hashing {
+	// 	keyStr := HashProto(s.keying, flowMessage)
+	// 	key = sarama.StringEncoder(keyStr)
+	// }
+	// var b []byte
+	// if !s.FixedLengthProto {
+	// 	b, _ = proto.Marshal(flowMessage)
+	// } else {
+	// 	buf := proto.NewBuffer([]byte{})
+	// 	buf.EncodeMessage(flowMessage)
+	// 	b = buf.Bytes()
+	// }
+	// s.producer.Input() <- &sarama.ProducerMessage{
+	// 	Topic: s.topic,
+	// 	Key:   key,
+	// 	Value: sarama.ByteEncoder(b),
+	// }
+
+	// NO sarama, use AVRO!
+	payload, err := utils.GenerateAVRO(flowMessage)
+	if err != nil {
+		s.producer.Input() <- &sarama.ProducerMessage{
+			Topic: s.topic,
+			Value: sarama.StringEncoder(payload),
+		}
 	}
 }
 

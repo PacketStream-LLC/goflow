@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"net"
 
-	"github.com/cloudflare/goflow/v3/decoders/sflow"
-	flowmessage "github.com/cloudflare/goflow/v3/pb"
+	"github.com/packetstream-llc/goflow/v3/decoders/sflow"
+	flowmessage "github.com/packetstream-llc/goflow/v3/pb"
 	log "github.com/sirupsen/logrus"
 )
 

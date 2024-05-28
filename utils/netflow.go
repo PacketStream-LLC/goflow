@@ -8,9 +8,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/cloudflare/goflow/v3/decoders/netflow"
-	flowmessage "github.com/cloudflare/goflow/v3/pb"
-	"github.com/cloudflare/goflow/v3/producer"
+	"github.com/packetstream-llc/goflow/v3/decoders/netflow"
+	flowmessage "github.com/packetstream-llc/goflow/v3/pb"
+	"github.com/packetstream-llc/goflow/v3/producer"
 	"github.com/prometheus/client_golang/prometheus"
 )
 

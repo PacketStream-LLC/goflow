@@ -3,25 +3,26 @@
 This application is a NetFlow/IPFIX/sFlow collector in Go.
 
 It gathers network information (IP, interfaces, routers) from different flow protocols,
-serializes it in a protobuf format and sends the messages to Kafka using Sarama's library.
+serializes it in ~~a protobuf format~~ **AVRO format** and sends the messages to Kafka using ~~Sarama's library~~ **confluent's library**.
 
 ## Why
 
 The diversity of devices and the amount of network samples at Cloudflare required its own pipeline.
 We focused on building tools that could be easily monitored and maintained.
-The main goal is to have full visibility of a network while allowing other teams to develop on it.
+The main goal is to have full visibility of a network while allowing other teams to develop on it.  
+But, the metric collection method is incompatible, So here is the forked version of the original.
 
 ### Modularity
 
 In order to enable load-balancing and optimizations, the GoFlow library has a `decoder` which converts
 the payload of a flow packet into a Go structure.
 
-The `producer` functions (one per protocol) then converts those structures into a protobuf (`pb/flow.pb`)
+The `producer` functions (one per protocol) then converts those structures into ~~a protobuf (`pb/flow.pb`)~~ AVRO format.
 which contains the fields a network engineer is interested in.
 The flow packets usually contains multiples samples
 This acts as an abstraction of a sample.
 
-The `transport` provides different way of processing the protobuf. Either sending it via Kafka or 
+The `transport` provides different way of processing the ~~protobuf~~ **AVRO**. Either sending it via Kafka or 
 print it on the console.
 
 Finally, `utils` provide functions that are directly used by the CLI utils.
@@ -30,7 +31,7 @@ There is also one CLI tool per protocol.
 
 You can build your own collector using this base and replace parts:
 * Use different transport (eg: RabbitMQ instead of Kafka)
-* Convert to another format (eg: Cap'n Proto, Avro, instead of protobuf)
+* Convert to another format (eg: Cap'n Proto, ~~Avro~~ (Already Done), instead of protobuf (Use upstream))
 * Decode different samples (eg: not only IP networks, add MPLS)
 * Different metrics system (eg: use [expvar](https://golang.org/pkg/expvar/) instead of Prometheus)
 
@@ -92,7 +93,8 @@ You can define the number of workers per protocol using `-workers` .
 
 ## Docker
 
-We also provide a all-in-one Docker container. To run it in debug mode without sending into Kafka:
+Unfortunately, We don't provide a all-in-one Docker container.  
+But if you want to use the upstream version, To run it in debug mode without sending into Kafka:
 
 ```
 $ sudo docker run --net=host -ti cloudflare/goflow:latest -kafka=false

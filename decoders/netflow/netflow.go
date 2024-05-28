@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/cloudflare/goflow/v3/decoders/utils"
+	"github.com/packetstream-llc/goflow/v3/decoders/utils"
 )
 
 type FlowBaseTemplateSet map[uint16]map[uint32]map[uint16]interface{}
