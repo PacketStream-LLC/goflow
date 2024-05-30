@@ -6,6 +6,15 @@ import (
 	"strings"
 )
 
+func ConvertToAVROType(typeString string) string {
+	switch typeString {
+	case "bool":
+		return "boolean"
+	}
+
+	return typeString
+}
+
 func GenerateAVROSchema[T any](t T) map[string]interface{} {
 	var schema = make(map[string]interface{})
 
@@ -32,7 +41,7 @@ func GenerateAVROSchema[T any](t T) map[string]interface{} {
 
 		// get type of field and add it to schema.fields using reflection
 		typeOfField := reflectedField.Type
-		field["type"] = typeOfField.String()
+		field["type"] = ConvertToAVROType(typeOfField.String())
 
 		fields = append(fields, field)
 	}
