@@ -41,7 +41,18 @@ func GenerateAVROSchema[T any](t T) map[string]interface{} {
 
 		// get type of field and add it to schema.fields using reflection
 		typeOfField := reflectedField.Type
-		field["type"] = ConvertToAVROType(typeOfField.String())
+
+		if typeOfField.Kind() == reflect.Array || typeOfField.Kind() == reflect.Slice {
+			field["type"] = "array"
+			itemType := typeOfField.Elem()
+			if itemType.Kind() == reflect.Struct {
+				field["items"] = GenerateAVROSchema(reflect.New(itemType).Elem().Interface())["field"]
+			} else {
+				field["items"] = ConvertToAVROType(typeOfField.Elem().String())
+			}
+		} else {
+			field["type"] = ConvertToAVROType(typeOfField.String())
+		}
 
 		fields = append(fields, field)
 	}
