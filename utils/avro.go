@@ -10,7 +10,6 @@ func ConvertToAVROType(typeString string) string {
 	switch typeString {
 	case "bool":
 		return "boolean"
-	}
 
 	return typeString
 }
@@ -45,7 +44,11 @@ func GenerateAVROSchema[T any](t T) map[string]interface{} {
 		if typeOfField.Kind() == reflect.Array || typeOfField.Kind() == reflect.Slice {
 			field["type"] = "array"
 			itemType := typeOfField.Elem()
-			if itemType.Kind() == reflect.Struct {
+
+			if itemType.Kind() == reflect.Uint8 {
+				field["items"] = "bytes"
+
+			} else if itemType.Kind() == reflect.Struct {
 				field["items"] = GenerateAVROSchema(reflect.New(itemType).Elem().Interface())["field"]
 			} else {
 				field["items"] = ConvertToAVROType(typeOfField.Elem().String())
